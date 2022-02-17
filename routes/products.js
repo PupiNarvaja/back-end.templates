@@ -20,11 +20,11 @@ const getProduct = () => {
 
 //GET products
 router.get("/", (req, res) => {
-    res.send(products)
+    res.sendFile(path.join(__dirname, "../public/products.html"));
 });
 
 //GET products
-router.get("/new-product", (req, res) => {
+router.get("/add", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/form.html"));
 });
 
@@ -36,7 +36,7 @@ router.get("/:id", (req, res) => {
 });
 
 //POST products
-router.post("/new-product", upload.single("image"), (req, res) => {
+router.post("/add", upload.single("image"), (req, res) => {
     const { id, name, type, price, thumbnail } = req.body;
 
     products.push({
@@ -47,7 +47,7 @@ router.post("/new-product", upload.single("image"), (req, res) => {
         thumbnail
     })
     
-    // res.redirect("/api/products");
+    res.redirect("/products");
 });
 
 //PUT/PATCH movies/id

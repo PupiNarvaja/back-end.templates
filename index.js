@@ -36,9 +36,9 @@ app.engine("hbs", engine({
     extname: "hbs"
 }));
 app.set("view engine", "hbs");
-app.get("/", (req, res) => res.render("main", { products, name: "Pupi" }));
 
 // app.use("/api/categories", categoriesRouter)
-app.use("/api/products", productsRouter);
+app.get("/products", (req, res) => res.render("main", { products }));
+app.use("/products", productsRouter);
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
