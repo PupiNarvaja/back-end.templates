@@ -1,0 +1,2 @@
+El motor de plantillas que fue más de mi agrado fue handlebars, principalmente por su sencilla aplicación y sintáxis. La de pug no me gusta, si bien es limpia no es ordenada, y la de ejs es peor. La sintáxis de varias llaves se asemeja más a javascript nativo, y a react js, herramienta que me gusta mucho. 
+En conclusión, handlebars tiene la sintáxis más clara de las 3 opciones y es más fácil su implementación .
