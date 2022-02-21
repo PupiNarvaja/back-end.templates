@@ -37,20 +37,20 @@ router.get("/:id", (req, res) => {
 
 //POST products
 router.post("/add", upload.single("image"), (req, res) => {
-    const { id, name, type, price, thumbnail } = req.body;
+    const { id, name, type, price, image } = req.body;
 
     products.push({
         id,
         name,
         type,
         price,
-        thumbnail
+        image
     })
     
     res.redirect("/products");
 });
 
-//PUT/PATCH movies/id
+//PUT/PATCH products/id
 router.put("/:id", (req, res) => {
     getParamsId(req);
 
@@ -72,6 +72,5 @@ router.delete("/:id", (req, res) => {
 
     res.sendStatus(200);
 });
-
 
 module.exports = router;

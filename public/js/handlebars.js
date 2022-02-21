@@ -2,8 +2,6 @@
 
 const products = require(".../database/productos.json");
 
-const nombre = "Pupi";
-
 const template = document.getElementById("template").innerHTML;
 
 //compila el template.

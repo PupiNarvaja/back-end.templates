@@ -66,3 +66,10 @@ h1 {
 .form select {
     width: 150px;
 }
+
+.prodContainer {
+    display: flex;
+}
+.prodContainer .card {
+    margin: 0 50px;
+}

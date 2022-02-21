@@ -4,19 +4,6 @@ const app = express();
 const { engine } = require('express-handlebars');
 const PORT = process.env.PORT || 8080;
 
-// PUG
-// const pugEngine = require("./engines/pug");
-// pugEngine(app);
-// const pugRouter = require("./routes/pug");
-// app.use("/ejs", ejsRouter);
-// app.use("/pug", pugRouter);
-
-// EJS
-// const ejsEngine = require("./engines/ejs");
-// ejsEngine(app);
-// const ejsRouter = require("./routes/ejs");
-// app.use("/ejs", ejsRouter);
-
 const products = require('./database/products.json');
 
 const homeRouter = require('./routes/home');

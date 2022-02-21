@@ -1,18 +1,20 @@
 <h3>Take a look:</h3>
-{{#if products}}
-{{#each products}}
-    <div class="card">
-        <div>
-            <img src="{{this.thumbnail}}" alt="{{this.name}}" style="max-width: 100px;">
+<div class="prodContainer">
+    {{#if products}}
+    {{#each products}}
+        <div class="card">
+            <div>
+                <img src={{{this.image}}} style="max-width: 100px;">
+            </div>
+            <div>
+                {{this.name}}
+            </div>
+            <div>
+                {{this.price}}
+            </div>
         </div>
-        <div>
-            {{this.name}}
-        </div>
-        <div>
-            {{this.price}}
-        </div>
-    </div>
-{{/each}}
-{{else}}
-    <h4>No products available.</h4>
-{{/if}}
+    {{/each}}
+    {{else}}
+        <h4>No products available.</h4>
+    {{/if}}
+</div>
