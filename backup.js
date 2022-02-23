@@ -51,3 +51,12 @@ app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 //2 importarlo.
 //3 setear el engine comn layoutDir
 //4 hacer el get con el res.render y lo demas.
+
+
+// Websocket es un protocolo de red basado en TCP ---> Transmission Control Protocol
+//canal de comunicacion que está siempre abierto hasta que alguno de los 2 lo termine.
+// Tanto el cliente y el server pueden mandar mensajes TEXTOS planos. Bidireccional.
+
+//balanceador de carga: redirecciona peticiones a los serviodores correspondientes. VERIFICAR
+
+//PROXY es un server intermediario separando websites de usuarios. Decide a que servidor mandar la request escondiendo el origen de la request, similar a una vpn.

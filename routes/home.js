@@ -5,13 +5,7 @@ const { Router } = express;
 const router = Router();
 
 router.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+    res.render("main")
 });
-
-
-
-
-
-
 
 module.exports = router;

@@ -19,13 +19,11 @@ const getProduct = () => {
 };
 
 //GET products
-router.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/products.html"));
-});
+router.get("/", (req, res) => res.render("products", { products }));
 
 //GET products
 router.get("/add", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/form.html"));
+    res.render("new")
 });
 
 //GET products/id
