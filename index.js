@@ -1,10 +1,37 @@
-const express = require('express');
-const path = require('path');
-const app = express();
 const { engine } = require('express-handlebars');
-const PORT = process.env.PORT || 8080;
+const path = require('path');
+const express = require('express');
+const app = express();
+const http = require('http');
+const socketIO = require('socket.io');
 
 const products = require('./database/products.json');
+
+const server = http.createServer(app);
+const io = socketIO(server);
+
+// Websocket
+const chat = [];
+io.on("connection", (socket) => {
+    console.log(`${socket.id} connected!`);
+    socket.emit("prods", products);
+
+    socket.emit("msg", chat);
+    socket.on("newMsg", data => {
+        chat.push(data);
+        console.log(data);
+        io.sockets.emit("msgs", chat);
+    })
+})
+
+
+
+
+
+
+
+
+
 
 // ---- Routes requires ----
 const homeRouter = require('./routes/home');
@@ -31,4 +58,4 @@ app.use("/products", productsRouter);
 
 
 
-app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+app.listen(8080, () => console.log(`Listening on localhost:8080`));

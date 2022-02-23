@@ -1,1 +1,37 @@
 <h1>Welcome to This.</h1>
+<form action="/products/add" method="post" enctype="multipart/form-data" class="form">
+    <div>
+        <label for="name">Name:</label>
+        <input name="name">
+    </div>
+    <div>
+        <label for="type">Type:</label>
+        <select name="type">
+            <option value="shirt">Shirt</option>
+            <option value="jacket">Jacket</option>
+        </select>
+    </div>
+    <div>
+        <label for="price">Price:</label>
+        <input name="price">
+    </div>
+    <div>
+        <label for="image">Image:</label>
+        <input type="file" name="image">
+    </div>
+    <div class="btnDiv">
+        <button type="submit">Send</button>
+    </div>
+</form>
+
+<h2>These are our products:</h2>
+<div class="prodContainer" id="cart">
+
+</div>
+<div>
+    <label for="mail">Mail:</label>
+    <input type="mail">
+    <label for="message">Message:</label>
+    <input type="message">
+    <button type="submit" id="btn">Send</button>
+</div>
