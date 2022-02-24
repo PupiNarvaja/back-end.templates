@@ -9,14 +9,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    {{!-- <script src="/socket.io/socket.io.js"></script> --}}
+    {{!-- <script src="/handlebars/index.js"></script> --}}
 </head>
 <body>
     <header class="w-full bg-gray-300 h-40 header">
         <nav>
             <ul>
                 <a href="/"><li>Home</li></a>
-                <a href="/products"><li>Products</li></a>
-                <a href="/products/add"><li>Add new product</li></a>
+                {{!-- <a href="/products"><li>Products</li></a>
+                <a href="/products/add"><li>Add new product</li></a> --}}
             </ul>
         </nav>
     </header>
@@ -24,4 +26,6 @@
         {{{body}}}
     </div>
 </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/static/js/chat.js"></script>
 </html>

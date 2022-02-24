@@ -45,7 +45,7 @@ router.post("/add", upload.single("image"), (req, res) => {
         image
     })
     
-    res.redirect("/products");
+    // res.redirect("/products");
 });
 
 //PUT/PATCH products/id

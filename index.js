@@ -3,26 +3,61 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const http = require('http');
-const socketIO = require('socket.io');
+const { Server } = require('socket.io');
 
-const products = require('./database/products.json');
+// const products = require('./database/products.json');
+const products = [
+    {
+      id: 0,
+      name: "Jacket0",
+      type: "jacket",
+      price: 2000,
+      image: "https://res.cloudinary.com/this/image/upload/v1642777578/p3_mc8xcq.jpg"
+    },
+    {
+      id: 1,
+      name: "Shirt0",
+      type: "shirt",
+      price: 1300,
+      image: "https://res.cloudinary.com/this/image/upload/v1642778633/p7_tvv6dj.jpg"
+    },
+    {
+      id: 2,
+      name: "Shirt1",
+      type: "shirt",
+      price: 1700,
+      image: "https://res.cloudinary.com/this/image/upload/v1642778672/p9_mongye.jpg"
+    }
+];
 
 const server = http.createServer(app);
-const io = socketIO(server);
+const io = new Server(server);
+
+const messages = [];
 
 // Websocket
 const chat = [];
 io.on("connection", (socket) => {
+    // PRODUCTS.
     console.log(`${socket.id} connected!`);
-    socket.emit("prods", products);
+    socket.emit("msg", "Saludos desde el server."); //----> Nombre de evento, info a transmitir.
+    for(let i = 0; i < products.length; i++) {
+        socket.emit("products", products[i]);
+    }
 
-    socket.emit("msg", chat);
-    socket.on("newMsg", data => {
-        chat.push(data);
-        console.log(data);
-        io.sockets.emit("msgs", chat);
+    socket.on("new-prod", data => {
+        products.push(data);
+    });
+
+    // CHAT.
+    socket.emit("messages", messages);
+
+    socket.on("new-message", data => {
+        messages.push(data);
+        io.sockets.emit("messages", messages);
     })
-})
+});
+
 
 
 
@@ -58,4 +93,4 @@ app.use("/products", productsRouter);
 
 
 
-app.listen(8080, () => console.log(`Listening on localhost:8080`));
+server.listen(8080, () => console.log(`Listening on localhost:8080`));

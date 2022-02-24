@@ -1,8 +1,8 @@
 <h1>Welcome to This.</h1>
-<form action="/products/add" method="post" enctype="multipart/form-data" class="form">
+<form onsubmit="return addProduct(this)" class="form">
     <div>
         <label for="name">Name:</label>
-        <input name="name">
+        <input name="name" id="prod-name">
     </div>
     <div>
         <label for="type">Type:</label>
@@ -13,25 +13,42 @@
     </div>
     <div>
         <label for="price">Price:</label>
-        <input name="price">
+        <input name="price" id="prod-price">
     </div>
     <div>
-        <label for="image">Image:</label>
-        <input type="file" name="image">
+        <label for="image">Image URL:</label>
+        <input type="text" name="image" id="prod-image">
     </div>
     <div class="btnDiv">
-        <button type="submit">Send</button>
+        <button type="submit" id="new-Prod-Btn">Send</button>
     </div>
 </form>
 
-<h2>These are our products:</h2>
-<div class="prodContainer" id="cart">
+<h2 class="margin-left">These are our products:</h2>
+<div class="prodContainer margin-left">
+    <div id="cart" class="margin-left">
+
+    </div>
+    <ul id="prods-list" class="margin-left">
+
+    </ul>
 
 </div>
-<div>
+<form onsubmit="return addMessage(this)" class="margin-left">
     <label for="mail">Mail:</label>
-    <input type="mail">
+    <input type="mail" id="input-mail">
     <label for="message">Message:</label>
-    <input type="message">
-    <button type="submit" id="btn">Send</button>
+    <input id="message-input" placeholder="Enter message" />
+    <button type="submit" id="send-btn">Send</button>
+</form>
+<div class="margin-left">
+    <div id="user-list">
+        <ul id="user-list" class="name-list">
+            
+        </ul>
+    </div>
+    <div id="chat-container" class="margin-bottom">
+
+    </div>
+
 </div>
