@@ -36,37 +36,29 @@ const io = new Server(server);
 const messages = [];
 
 // Websocket
-const chat = [];
 io.on("connection", (socket) => {
-    // PRODUCTS.
     console.log(`${socket.id} connected!`);
-    socket.emit("msg", "Saludos desde el server."); //----> Nombre de evento, info a transmitir.
-    for(let i = 0; i < products.length; i++) {
-        socket.emit("products", products[i]);
-    }
 
-    socket.on("new-prod", data => {
+    // PRODUCTS.
+    // Envía todos los productos.
+    socket.emit("products", products);
+
+    // Pushea el nuevo producto y renderiza nuevamente los productos.
+    socket.on("new-prod", (data) => {
         products.push(data);
+         io.sockets.emit("products", products);
     });
 
     // CHAT.
+    // Envia los mensajes hasta entonces enviados.
     socket.emit("messages", messages);
 
-    socket.on("new-message", data => {
+    // Pushea el nuevo mensaje recibido y lo renderiza en todos los clientes.
+    socket.on("new-message", (data) => {
         messages.push(data);
         io.sockets.emit("messages", messages);
-    })
+    });
 });
-
-
-
-
-
-
-
-
-
-
 
 // ---- Routes requires ----
 const homeRouter = require('./routes/home');
@@ -90,7 +82,6 @@ app.set("view engine", "hbs");
 app.use("/", homeRouter);
 // app.use("/categories", categoriesRouter)
 app.use("/products", productsRouter);
-
 
 
 server.listen(8080, () => console.log(`Listening on localhost:8080`));

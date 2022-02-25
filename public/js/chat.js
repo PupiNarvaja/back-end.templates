@@ -1,22 +1,16 @@
-const inputMail = document.getElementById("input-mail"); // input del modal
-const chatContainer = document.getElementById("chat-container");
-const messageInput = document.getElementById("message-input"); // input del chat
+const inputMail = document.getElementById("input-mail"); // E-mail input.
+const chatContainer = document.getElementById("chat-container"); // Chat section.
+const messageInput = document.getElementById("message-input"); // Chat input.
 const sendBtn = document.getElementById("send-btn"); // Send button.
-const usersList = document.getElementById("user-list") // Users' list.
-
-//Prods section.
-const cart = document.getElementById("cart");
-const prodList = document.querySelector("#prods-list");
-
-const user = {};
-const users = [];
+// const usersList = document.getElementById("user-list"); // Users' list.
 
 const socket = io();
 
 const date = Date.now();
 
 function renderChat (data) {
-    const html = data.map((elem, index) => {
+    // Por cada mensaje del array messages, renderiza en una sección de chat.
+    const html = data.map((elem) => {
         return(`<div>
         <p>
         <strong style="color:blue">${elem.author}</strong><span class="margin-left-small" style="color:brown">${new Date(date).toLocaleString()}</span>
@@ -25,61 +19,50 @@ function renderChat (data) {
         </div>
         `)
     }).join(" ");
-
-
     document.getElementById("chat-container").innerHTML = html;
 }
 
 function addMessage(e) {
-    if (document.getElementById("input-mail").value == "") {
+    // Si el campo "mail" está vacío, impide el envío del mensaje. Caso contrario, lo envía.
+    const mailInput = document.getElementById("input-mail");
+    const messageInput = document.getElementById("message-input");
+
+    if (mailInput.value == "") {
         alert("Please, fill the e-mail field.");
         return;
     } else {
         const msg = {
-            author: document.getElementById("input-mail").value,
-            text: document.getElementById("message-input").value
+            author: mailInput.value,
+            text: messageInput.value,
         };
         socket.emit("new-message", msg);
         return false;
-    }
-}
+    };
+};
 
 socket.on("messages", data => {
     renderChat(data);
 });
 
-
 // PRODUCTS SECTION.
+const cart = document.getElementById("cart");
+const prodList = document.querySelector("#prods-list");
 
-//Intenté hacer lo mismo que en el chat para ver si asi 
-// hacía dinámico el renderizado de productos pero me tira data.map is not a function.
-// Voy a corregirlo.
+function renderProducts (data) {
+    // Por cada producto del array products, renderiza en una sección de productos.
+    const html = data.map((prod) => {
+        return(`<div class="card">
+        <img src=${prod.image} alt=${prod.name}>
+        <h3>${prod.name}</h3>
+        <p>$${prod.price}</p>
+        </div>
+        `)
+    }).join(" ");
+    cart.innerHTML = html;
+};
 
-// function renderProds (data) {
-//     const html = data.map((elem, index) => {
-//         return(`<div>
-//         <img src="${elem.image}">
-//         <p>${elem.name}</p>
-//         </div>
-//         `)
-//     }).join(" ");
-
-//     document.getElementById("prods-list").innerHTML += html;
-// }
-
-socket.on("products", data => {
-    // renderProds(data)
-    // Escucha "products" sel server.
-    //Los trae y por cada uno crea un <li> con sus datos.
-    const liElement = document.createElement("li");
-    liElement.innerHTML = data.name;
-    prodList.appendChild(liElement);
-
-    // Crea un <img> por cada imagen.
-    const imgElement = document.createElement("img");
-    imgElement.src = data.image;
-    imgElement.style.width = "100px";
-    cart.prepend(imgElement);
+socket.on("products", (data) => {
+    renderProducts(data);
 });
 
 function addProduct(e) {
@@ -99,4 +82,4 @@ function addProduct(e) {
         socket.emit("new-prod", newProd);
         return false;
     }
-}
+};

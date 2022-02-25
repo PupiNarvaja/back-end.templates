@@ -1,5 +1,4 @@
 //Query a la DB.
-
 const products = require(".../database/productos.json");
 
 const template = document.getElementById("template").innerHTML;

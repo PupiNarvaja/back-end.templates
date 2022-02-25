@@ -71,19 +71,22 @@ h1 {
     display: flex;
 }
 .prodContainer .card {
-    margin: 0 50px;
+    margin: 0 25px;
+}
+
+.card img {
+    max-width: 100px;
 }
 
 .prodContainer {
     display: flex;
     flex-flow: column nowrap;
-    width: 700px;
 }
 
 #cart {
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
+    flex-flow: row wrap;
+    margin-bottom: 50px;
 }
 
 #prods-list {

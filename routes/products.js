@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const { Router } = express;
-const upload = require('../middlewares/multerUpload')
+// const upload = require('../middlewares/multerUpload')
 
 const router = Router();
 
@@ -34,19 +34,19 @@ router.get("/:id", (req, res) => {
 });
 
 //POST products
-router.post("/add", upload.single("image"), (req, res) => {
-    const { id, name, type, price, image } = req.body;
+// router.post("/add", upload.single("image"), (req, res) => {
+//     const { id, name, type, price, image } = req.body;
 
-    products.push({
-        id,
-        name,
-        type,
-        price,
-        image
-    })
+//     products.push({
+//         id,
+//         name,
+//         type,
+//         price,
+//         image
+//     })
     
-    // res.redirect("/products");
-});
+//     // res.redirect("/products");
+// });
 
 //PUT/PATCH products/id
 router.put("/:id", (req, res) => {
