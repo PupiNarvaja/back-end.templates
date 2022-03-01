@@ -30,7 +30,7 @@ router.get("/add", (req, res) => {
 router.get("/:id", (req, res) => {
     getParamsId(req);
 
-    !getProduct() ? res.status(404).send({ error: "Product not found." }) : res.send(getProduct());
+    !getProduct() ? res.status(404).send({ error: "Product not found." }) : res.send(getProduct()); // No entiendo como renderizar 1 solo producto
 });
 
 //POST products

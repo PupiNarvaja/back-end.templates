@@ -81,7 +81,7 @@ app.set("view engine", "hbs");
 // ---- Routes calls ----
 app.use("/", homeRouter);
 // app.use("/categories", categoriesRouter)
-app.use("/products", productsRouter);
+app.use("/api/products", productsRouter);
 
 
 server.listen(8080, () => console.log(`Listening on localhost:8080`));

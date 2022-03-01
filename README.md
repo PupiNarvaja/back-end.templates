@@ -1,7 +1,11 @@
 This | Dress well.
+
 To run this site, type in your CLI:
+
 npm run dev (with nodemon).
+
 or
+
 npm start (with node).
 
 
