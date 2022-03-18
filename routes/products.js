@@ -1,74 +1,35 @@
 const express = require('express');
-const path = require('path');
+// const path = require('path');
 const { Router } = express;
+const Controller = require('../controllers/controller')
 // const upload = require('../middlewares/multerUpload')
 
 const router = Router();
 
-const products = require('../database/products.json');
-
 // Returns destructured id of the parameters requested.
-const getParamsId = (req) => {
-    ({ id } = req.params)
-    return req.params
-};
+// const getParamsId = (req) => {
+//     ({ id } = req.params)
+//     return req.params
+// };
 
 // Returns a specific product.
-const getProduct = () => {
-    return products.find(prod => prod.id == id);
-};
+// const getProduct = () => {
+//     return products.find(prod => prod.id == id);
+// };
 
 //GET products
-router.get("/", (req, res) => res.render("products", { products }));
-
-//GET products
-router.get("/add", (req, res) => {
-    res.render("new")
-});
+router.get("/", Controller.getAllProducts);
 
 //GET products/id
-router.get("/:id", (req, res) => {
-    getParamsId(req);
+router.get("/:id", Controller.getProductById);
 
-    !getProduct() ? res.status(404).send({ error: "Product not found." }) : res.send(getProduct());
-});
-
-//POST products
-// router.post("/add", upload.single("image"), (req, res) => {
-//     const { id, name, type, price, image } = req.body;
-
-//     products.push({
-//         id,
-//         name,
-//         type,
-//         price,
-//         image
-//     })
-    
-//     // res.redirect("/products");
-// });
+//POST new products
+router.post("/", Controller.newProduct);
 
 //PUT/PATCH products/id
-router.put("/:id", (req, res) => {
-    getParamsId(req);
-
-    !getProduct() ? res.status(404).send({ error: "Product not found." }) : res.send(getProduct());
-
-    const { name } = req.body
-
-    getProduct().name = name;
-    res.sendStatus(200);
-});
+router.put("/:id", Controller.updateProductById);
 
 //DELETE id
-router.delete("/:id", (req, res) => {
-    getParamsId(req);
-    !getProduct() ? res.status(404).send({ error: "Product not found." }) : res.send(getProduct());
-    
-    const index = products.indexOf(getProduct());
-    products.splice(index, 1);
-
-    res.sendStatus(200);
-});
+router.delete("/:id", Controller.deleteProduct);
 
 module.exports = router;
