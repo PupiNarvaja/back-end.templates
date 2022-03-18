@@ -12,12 +12,5 @@
     "type": "shirt",
     "price": 1300,
     "image": "https://res.cloudinary.com/this/image/upload/v1642778633/p7_tvv6dj.jpg"
-  },
-  {
-    "id": 2,
-    "name": "Shirt1",
-    "type": "shirt",
-    "price": 1700,
-    "image": "https://res.cloudinary.com/this/image/upload/v1642778672/p9_mongye.jpg"
   }
 ]

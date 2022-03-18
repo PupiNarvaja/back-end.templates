@@ -1,9 +1,9 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-class Contenedor {
-  constructor() {
-    this.path = path.join(__dirname, '../database/products.json')
+class Model {
+  constructor(pathName) {
+    this.path = path.join(__dirname, pathName)
   }
 
   async getProdById(id) {
@@ -24,7 +24,7 @@ class Contenedor {
   }
 
   async getAll() {
-    return this.readData()
+    return this.readData();
   }
 
   writeData(data) {
@@ -37,4 +37,4 @@ class Contenedor {
   }
 }
 
-module.exports = Contenedor;
+module.exports = Model;
